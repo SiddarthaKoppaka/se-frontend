@@ -6,6 +6,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from "react-router-dom";
 import React, { useContext, useEffect, useState } from 'react';
 import { useUserActions } from '../../context/UserActionsContext';
+import 'typeface-roboto';
 
 const Share = () => {
 
@@ -19,7 +20,7 @@ const Share = () => {
 
   const { user, logout, fetchUserDetails } = useAuth();
   const { handleUpload, handleDeletePost } = useUserActions();
-  
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
 
 
   const navigate = useNavigate();
@@ -48,15 +49,21 @@ const Share = () => {
 
   // POST UPLOADS
   const handleFileChange = (event) => {
-    console.log("HERE1: ");
     const { name, files } = event.target;
-    if (name === 'image') {
-      setImage(files[0]);
-    } else if (name === 'video') {
-      setVideo(files[0]);
+    if (files[0]) {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(files[0]);
+      fileReader.onload = (e) => {
+        if (name === 'image') {
+          setImage(files[0]);
+          setImagePreviewUrl(e.target.result); // Set the preview URL for the image
+        } else if (name === 'video') {
+          setVideo(files[0]);
+          // Similarly, set the video preview URL if needed
+        }
+      };
     }
   };
-
   const onUpload = async () => {
     console.log("HERE2: ");
     const formData = new FormData();
@@ -78,8 +85,26 @@ const Share = () => {
 
 
   return (
-  <div className="share">
+  <div className="share"   style={{
+    fontFamily: '"Roboto", sans-serif', // Replace with the font you want to use
+    // ... any other styles you want to apply to the .share div
+  }}>
   <div className="container">
+  {imagePreviewUrl && (
+  <div className="image-preview" style={{ margin: '10px 0', textAlign: 'center' }}>
+    <img
+      src={imagePreviewUrl}
+      alt="Image preview"
+      style={{
+        maxWidth: '100%', // Ensures the image does not exceed the container's width
+        maxHeight: '200px', // Limits the height of the image preview
+        border: '1px solid #ccc', // Gives the image a slight border
+        borderRadius: '4px', // Rounds the corners of the border
+        objectFit: 'cover', // Ensures the aspect ratio of the image is preserved
+      }}
+    />
+  </div>
+)}
     <div className="top">
       <img src={profilePic} alt="" />
       <input 
@@ -88,6 +113,7 @@ const Share = () => {
         onChange={(e) => setPostText(e.target.value)} 
       />
     </div>
+    
     <hr />
     <div className="bottom">
       <div className="left">
@@ -113,6 +139,7 @@ const Share = () => {
           accept="video/*" 
           onChange={handleFileChange} 
         />
+        
         <label htmlFor="file-video">
           <div className="item">
             <img src={Image} alt="" /> {/* Consider replacing this with a video icon */}

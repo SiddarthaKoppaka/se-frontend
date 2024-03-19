@@ -13,6 +13,7 @@ const SearchResultsPage = () => {
   
   const { handleSearch } = useUserActions();
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     const fetchSearchResults = async () => {

@@ -14,6 +14,7 @@ import { useDarkMode } from '../../context/DarkModeContext';
 
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
+import LogoImage from '../../assets/logo.png';
 
 const NavBar = () => {
   
@@ -159,7 +160,7 @@ const NavBar = () => {
     <div className="navbar">
       <div className="left">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span>Anti Facebook</span>
+        <img src={LogoImage} alt="Anti Facebook Logo" style={{ height: '70px' }} />
         </Link>
         <div onClick={handleNavigateHome} style={{ cursor: 'pointer' }}>
           <HomeOutlinedIcon />

@@ -1,0 +1,13 @@
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .buttonHoverEffect {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .buttonHoverEffect:hover {
+    background-color: #003d82; /* A darker shade of the button color for hover effect */
+  }
+  
