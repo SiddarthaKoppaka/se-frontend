@@ -102,6 +102,12 @@ function App() {
           
           <Route path="/search-results" element={<SearchResultsPage />} />
 
+          <Route path="/2FA" element={
+              // <ProtectedRoute requireAuth={true}>
+                <TwoFactorAuth />
+              // </ProtectedRoute>
+            } />
+
           </Route>
           {/* ----- LAYOUT ROUTE END ----- */}
 
@@ -131,11 +137,11 @@ function App() {
               // </ProtectedRoute>
             } />
           
-          <Route path="/2FA" element={
+          {/* <Route path="/2FA" element={
               // <ProtectedRoute requireAuth={true}>
                 <TwoFactorAuth />
               // </ProtectedRoute>
-            } />
+            } /> */}
 
           <Route path="/verify2FA" element={
               // <ProtectedRoute requireAuth={true}>

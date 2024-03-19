@@ -22,6 +22,14 @@ const Post = ({ post, onLikePost, onUnlikePost, onDeletePost }) => {
   
 
   return (
+    <div style={{
+      border: '1px solid #ccc',
+      borderRadius: '10px',
+      padding: '10px',
+      marginBottom: '20px',
+      backgroundColor: '#fff',
+      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+    }}>
     <div className="post">
       <div className="container">
         <div className="user">
@@ -33,7 +41,6 @@ const Post = ({ post, onLikePost, onUnlikePost, onDeletePost }) => {
                 <span className="name">{post.name}</span>
               </Link>
               {/* Simplifying to "1 min ago" for now. Use post.createdAt for actual data */}
-              <span className="date">1 min ago</span>
             </div>
           </div>
           {/* <MoreHorizIcon /> */}
@@ -77,6 +84,7 @@ const Post = ({ post, onLikePost, onUnlikePost, onDeletePost }) => {
         {/* {commentOpen && <Comments />} Assuming Comments component is defined */}
         {/* Adding action buttons */}
       </div>
+    </div>
     </div>
   );
 };

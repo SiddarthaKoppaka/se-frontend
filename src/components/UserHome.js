@@ -13,19 +13,15 @@ const UserHome = () => {
   const [isTwoFactorEnabled, setisTwoFactorEnabled] = useState('');
   const [posts, setPosts] = useState([]);
   const [friendRequests, setFriendRequests] = useState([]);
-  const [friendRequestsPending, setFriendRequestsPending] = useState([]);
   const [friends, setFriends] = useState([]);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
-  const { user, logout, fetchUserDetails, setReroute } = useAuth();
-  
+  const { user, logout, fetchUserDetails } = useAuth();
 
   // PAGE INIT
   useEffect(() => {
-    
-
     const fetchDetailsAndSetState = async () => {
       const token = localStorage.getItem('token');
       if (!user && token) {
@@ -65,16 +61,18 @@ const UserHome = () => {
           <li>Access your settings</li>
           <li>Explore available features</li>
         </ul>
-        <Share />
-      <div>
 
-      <div style={{ maxWidth: '500px', margin: 'auto' }}>
-        <Posts />
+        <Share />
+        <div style={{ padding: '20px' }}>
+
       </div>
+      <div>
+      <div style={{ maxWidth: '500px', margin: 'auto' }}>
+    <Posts />
+  </div>
   </div>
   </div>
 );
 };
 
 export default UserHome;
-

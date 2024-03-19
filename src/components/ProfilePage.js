@@ -50,7 +50,6 @@ const ProfilePage = () => {
             Posted on: {new Date(post.createdAt).toLocaleString()}
           </div>
         )}
-        {/* <button onClick={() => onDeletePost(post.postId)}>Delete</button> */}
 
     </div>
   ))}
